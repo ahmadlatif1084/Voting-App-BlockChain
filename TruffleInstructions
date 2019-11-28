@@ -1,0 +1,14 @@
+1) Truffle unbox pet-shop
+2) truffle migrate --reset
+3) truffle console
+4) Election.deployed().then(function(instance){app=instance})
+5) app.address
+
+When we define state variable as public, we can get the variable name like the function below.
+
+6) app.candidate(1)
+7) app.candidate(2)
+8) app.candidatesCount(2)
+9) app.candidates(1).then(function(instance){candidate=instance})
+10) candidate
+
