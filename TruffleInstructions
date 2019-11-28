@@ -11,4 +11,5 @@ When we define state variable as public, we can get the variable name like the f
 8) app.candidatesCount(2)
 9) app.candidates(1).then(function(instance){candidate=instance})
 10) candidate
-
+11) web3.eth
+12)web3.eth.accounts[0]
