@@ -27,6 +27,7 @@ App = {
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
 
+      App.listenForEvents();
       return App.render();
     });
   },
@@ -61,6 +62,7 @@ App = {
 
       for (var i = 1; i <= candidatesCount; i++) {
         electionInstance.candidates(i).then(function(candidate) {
+          console.log(candidate);
           var id = candidate[0];
           var name = candidate[1];
           var voteCount = candidate[2];
@@ -95,6 +97,18 @@ App = {
       $("#loader").show();
     }).catch(function(err){
       console.error(err);
+    });
+  },
+  listenForEvents: function(){
+    App.contracts.Election.deployed().then(function(instance){
+      instance.votedEvent({},
+        {
+          fromBlock:0,
+          toBlock:'latest'
+        }).watch(function(error,event){
+          console.log("event triggered",event);
+          App.render();
+        });
     });
   }
 };
